@@ -1,4 +1,4 @@
-# Lab 7 - Bookfinder
+# Bookfinder
 
 This lab page fetches data from two sources:
 - OpenLibrary (book search results)
