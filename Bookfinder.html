@@ -1,0 +1,217 @@
+<html>
+  <head>
+    <title>Looking up some books</title>
+    <script src="lab7.js" defer></script>
+    <style>
+      :root {
+        --bg: #f5f2ea;
+        --paper: #fbfaf7;
+        --ink: #1e1d1b;
+        --muted: #68645d;
+        --line: #d8d2c7;
+        --accent: #2f5f7d;
+        --accent-hover: #244a62;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.45),
+          rgba(255, 255, 255, 0.15)
+        );
+        padding: 32px 20px;
+      }
+
+      .page-shell {
+        max-width: 860px;
+        margin: 0 auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .hero {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 24px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+        font-size: clamp(1.9rem, 4vw, 2.5rem);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.98rem;
+        max-width: 62ch;
+      }
+
+      form {
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        min-width: 220px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        font-size: 1rem;
+        padding: 10px 12px;
+        background: #fff;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+
+      input[type="submit"] {
+        border: 1px solid var(--accent);
+        border-radius: 0;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        font-size: 0.92rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      input[type="submit"]:hover {
+        background: var(--accent-hover);
+      }
+
+      .table-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 16px;
+      }
+
+      .table-card h2 {
+        margin: 2px 0 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--line);
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 10px 11px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        background: #f0ede6;
+        color: #37342f;
+        font-size: 0.84rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      tr:hover td {
+        background: #f8f6f1;
+      }
+
+      #slowProductTable {
+        display: none;
+      }
+
+      #loadingMessage {
+        display: none;
+        margin: 0;
+        padding: 10px 12px;
+        border: 1px dashed #b7ada0;
+        background: #f3eee4;
+        color: #464039;
+        font-size: 0.94rem;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 16px 12px;
+        }
+
+        .hero,
+        .table-card {
+          padding: 14px;
+        }
+
+        th,
+        td {
+          padding: 9px;
+          font-size: 0.92rem;
+        }
+
+        input[type="submit"] {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <h1>Searching Books</h1>
+        <p class="subtitle">Instant book results!</p>
+        <form>
+          <input type="text" placeholder="Search by title, topic, or author" />
+          <input type="submit" value="Submit" />
+        </form>
+      </section>
+
+      <section class="table-card">
+        <h2>Book Results</h2>
+        <table id="productTable">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+        </table>
+      </section>
+
+      <p id="loadingMessage">Loading product data...</p>
+
+      <section class="table-card">
+        <h2>Slow Product Results</h2>
+        <table id="slowProductTable">
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+          </tr>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
