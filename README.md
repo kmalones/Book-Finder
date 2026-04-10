@@ -49,7 +49,4 @@ json-server --watch db.json --port 3000
 - Script not loading: In `Bookfinder.html`, make sure the script tag matches the JS filename in this folder.
   - Example: `<script src="Bookfinder.js" defer></script>`
 
-## Notes
-If your instructor expects `lab7.html` and `lab7.js` filenames, either:
-- rename these files to match, or
-- update references so HTML and JS filenames match each other.
+
